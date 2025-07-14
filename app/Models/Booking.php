@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Booking extends Model
 {
@@ -57,21 +58,7 @@ class Booking extends Model
         return $this->belongsTo(RentalUnit::class, 'unit_id', 'unit_id');
     }
 
-    /**
-     * Get the payments for the booking.
-     */
-    public function payments(): HasMany
-    {
-        return $this->hasMany(Payment::class, 'booking_id', 'booking_id');
-    }
-
-    /**
-     * Get the checklists for the booking.
-     */
-    public function checklists(): HasMany
-    {
-        return $this->hasMany(Checklist::class, 'booking_id', 'booking_id');
-    }
+    
 
     /**
      * Get the checkout transaction for the booking.

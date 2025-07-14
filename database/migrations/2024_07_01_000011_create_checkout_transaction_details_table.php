@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('detail_id');
             $table->foreignId('transaction_id')->constrained('checkout_transactions', 'transaction_id');
             $table->foreignId('unit_id')->constrained('rental_units', 'unit_id');
-            $table->foreignId('checklist_id')->nullable()->constrained('checklists', 'checklist_id');
             $table->integer('nights');
             $table->float('price_per_night');
             $table->float('subtotal');

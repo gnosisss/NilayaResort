@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id('image_id');
             $table->foreignId('unit_id')->constrained('rental_units', 'unit_id');
             $table->string('image');
+            $table->string('title')->nullable();
             $table->string('description')->nullable();
+            $table->boolean('is_featured')->default(false);
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
     }

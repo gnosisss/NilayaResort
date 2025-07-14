@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50">
+  <style>
+    .logo-text { font-family: Arial, sans-serif; font-weight: bold; }
+    .resort-text { font-family: Arial, sans-serif; font-weight: normal; }
+  </style>
+  <text x="10" y="35" fill="#0d9488" class="logo-text" font-size="24">Nilaya</text>
+  <text x="90" y="35" fill="#f59e0b" class="resort-text" font-size="24">Resort</text>
+</svg>

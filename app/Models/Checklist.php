@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Checklist extends Model
@@ -24,9 +23,10 @@ class Checklist extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'booking_id',
         'item',
-        'completed',
+        'description',
+        'price',
+        'is_active',
     ];
 
     /**
@@ -35,21 +35,14 @@ class Checklist extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'completed' => 'boolean',
+        'price' => 'float',
+        'is_active' => 'boolean',
     ];
 
     /**
-     * Get the booking that this checklist belongs to.
+     * Get the transaction details associated with this checklist item.
      */
-    public function booking(): BelongsTo
-    {
-        return $this->belongsTo(Booking::class, 'booking_id', 'booking_id');
-    }
-
-    /**
-     * Get the checkout transaction details associated with this checklist.
-     */
-    public function checkoutTransactionDetails(): HasMany
+    public function transactionDetails(): HasMany
     {
         return $this->hasMany(CheckoutTransactionDetail::class, 'checklist_id', 'checklist_id');
     }

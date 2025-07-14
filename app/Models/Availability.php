@@ -24,9 +24,12 @@ class Availability extends Model
      */
     protected $fillable = [
         'unit_id',
-        'available_date',
-        'slug',
+        'start_date',
+        'end_date',
         'is_available',
+        'status',
+        'price',
+        'notes',
     ];
 
     /**
@@ -35,7 +38,8 @@ class Availability extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'available_date' => 'date',
+        'start_date' => 'date',
+        'end_date' => 'date',
         'is_available' => 'boolean',
     ];
 

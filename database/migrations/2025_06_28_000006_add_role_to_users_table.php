@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('checklists', function (Blueprint $table) {
-            $table->id('checklist_id');
-            $table->foreignId('booking_id')->constrained('bookings', 'booking_id');
-            $table->string('item');
-            $table->boolean('completed')->default(false);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('role')->default('customer')->after('email_verified_at');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('checklists');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role');
+        });
     }
 };

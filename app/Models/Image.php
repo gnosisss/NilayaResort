@@ -25,7 +25,10 @@ class Image extends Model
     protected $fillable = [
         'unit_id',
         'image',
+        'title',
         'description',
+        'is_featured',
+        'sort_order',
     ];
 
     /**

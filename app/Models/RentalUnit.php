@@ -31,6 +31,8 @@ class RentalUnit extends Model
         'type',
         'slug',
         'price_per_night',
+        'is_for_sale',
+        'sale_price',
     ];
 
     /**

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -69,5 +70,61 @@ class User extends Authenticatable
     public function checkoutTransactions(): HasMany
     {
         return $this->hasMany(CheckoutTransaction::class, 'user_id', 'id');
+    }
+    
+    /**
+     * Get the property documents uploaded by the user.
+     */
+    public function propertyDocuments(): HasMany
+    {
+        return $this->hasMany(PropertyDocument::class, 'user_id', 'id');
+    }
+    
+    /**
+     * Get the property purchases made by the user.
+     */
+    public function propertyPurchases(): HasMany
+    {
+        return $this->hasMany(PropertyPurchase::class, 'user_id', 'id');
+    }
+    
+    /**
+     * Get the bank verifications performed by the user (if bank officer).
+     */
+    public function bankVerifications(): HasMany
+    {
+        return $this->hasMany(BankVerification::class, 'bank_user_id', 'id');
+    }
+    
+    /**
+     * Check if the user is a bank officer.
+     * 
+     * @return bool
+     */
+    public function isBankOfficer(): bool
+    {
+        return $this->role === 'bank_officer';
+    }
+    
+    /**
+     * Check if the user has any of the specified roles.
+     * 
+     * @param array $roles
+     * @return bool
+     */
+    public function hasAnyRole(array $roles): bool
+    {
+        return in_array($this->role, $roles);
+    }
+    
+    /**
+     * Check if the user has a specific role.
+     * 
+     * @param string $role
+     * @return bool
+     */
+    public function hasRole(string $role): bool
+    {
+        return $this->role === $role;
     }
 }
