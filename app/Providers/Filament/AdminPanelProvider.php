@@ -27,18 +27,19 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile()
             ->colors([
                 'primary' => Color::Red,
             ])
             ->brandName('Nilaya Resort - Admin Panel')
             ->brandLogo(asset('images/logo-admin.png'))
             ->favicon(asset('images/favicon-admin.png'))
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources(in: app_path('Filament/AdminResources'), for: 'App\\Filament\\AdminResources')
+            ->discoverPages(in: app_path('Filament/AdminPages'), for: 'App\\Filament\\AdminPages')
             ->pages([
-                Pages\Dashboard::class,
+                \App\Filament\AdminPages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->discoverWidgets(in: app_path('Filament/AdminWidgets'), for: 'App\\Filament\\AdminWidgets')
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
@@ -56,7 +57,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-                'admin',
+                \App\Http\Middleware\AdminMiddleware::class,
             ]);
     }
 }

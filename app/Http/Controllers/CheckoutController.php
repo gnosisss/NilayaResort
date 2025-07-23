@@ -96,7 +96,10 @@ class CheckoutController extends Controller
         $detail->price_per_night = $pricePerNight;
         $detail->subtotal = $rentalAmount;
         $detail->total = $rentalAmount;
-        $detail->description = 'Booking from ' . $booking->start_date->format('d M Y') . ' to ' . $booking->end_date->format('d M Y');
+        $detail->description = 'Booking from ' . 
+            ($booking->start_date ? $booking->start_date->format('d M Y') : 'N/A') . 
+            ' to ' . 
+            ($booking->end_date ? $booking->end_date->format('d M Y') : 'N/A');
         $detail->save();
         
         // Create transaction details for each damaged item

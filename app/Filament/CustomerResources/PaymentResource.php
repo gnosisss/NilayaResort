@@ -48,7 +48,7 @@ class PaymentResource extends Resource
                     ])
                     ->required()
                     ->disabled(),
-                Forms\Components\Select::make('status')
+                Forms\Components\Select::make('payment_status')
                     ->options([
                         'pending' => 'Pending',
                         'completed' => 'Completed',
@@ -80,7 +80,7 @@ class PaymentResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('payment_method')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status')
+                Tables\Columns\TextColumn::make('payment_status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'completed' => 'success',
@@ -98,7 +98,7 @@ class PaymentResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('status')
+                Tables\Filters\SelectFilter::make('payment_status')
                     ->options([
                         'pending' => 'Pending',
                         'completed' => 'Completed',

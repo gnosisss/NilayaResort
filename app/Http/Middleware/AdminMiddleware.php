@@ -27,7 +27,7 @@ class AdminMiddleware
                 ->with('error', 'Anda harus login terlebih dahulu untuk mengakses halaman ini.');
         }
         
-        if (!Auth::user()->role !== 'admin') {
+        if (Auth::user()->role !== 'admin') {
             Log::warning('Unauthorized access attempt to admin area - Not an admin', [
                 'user_id' => Auth::id(),
                 'user_email' => Auth::user()->email,

@@ -2,6 +2,15 @@
 
 namespace App\Filament\AdminPages;
 
+use App\Filament\AdminWidgets\BookingStatsWidget;
+use App\Filament\AdminWidgets\BookingTrendsWidget;
+use App\Filament\AdminWidgets\LatestBookingsWidget;
+use App\Filament\AdminWidgets\LatestPaymentsWidget;
+use App\Filament\AdminWidgets\PaymentMethodsWidget;
+use App\Filament\AdminWidgets\RentalUnitStatsWidget;
+use App\Filament\AdminWidgets\TransactionStatsWidget;
+use App\Filament\AdminWidgets\UnitAvailabilityWidget;
+use App\Filament\AdminWidgets\UserStatsWidget;
 use Filament\Pages\Dashboard as BaseDashboard;
 
 class Dashboard extends BaseDashboard
@@ -18,14 +27,21 @@ class Dashboard extends BaseDashboard
     protected function getHeaderWidgets(): array
     {
         return [
-            // Admin-specific widgets
+            TransactionStatsWidget::class,
+            UserStatsWidget::class,
+            BookingStatsWidget::class,
+            RentalUnitStatsWidget::class,
         ];
     }
 
     protected function getFooterWidgets(): array
     {
         return [
-            // Admin-specific widgets
+            BookingTrendsWidget::class,
+            PaymentMethodsWidget::class,
+            LatestBookingsWidget::class,
+            LatestPaymentsWidget::class,
+            UnitAvailabilityWidget::class,
         ];
     }
 }

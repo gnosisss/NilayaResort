@@ -24,12 +24,12 @@
             </div>
             
             <div class="p-4 bg-teal-50 rounded-lg border border-teal-200 flex flex-col items-center justify-center">
-                <div class="text-3xl font-bold text-green-600 mb-2">{{ \App\Models\PaymentTransaction::where('user_id', auth()->id())->where('status', 'completed')->count() }}</div>
+                <div class="text-3xl font-bold text-green-600 mb-2">{{ \App\Models\PaymentTransaction::where('user_id', auth()->id())->where('payment_status', 'completed')->count() }}</div>
                 <p class="text-gray-600 text-center">Completed Payments</p>
             </div>
             
             <div class="p-4 bg-teal-50 rounded-lg border border-teal-200 flex flex-col items-center justify-center">
-                <div class="text-3xl font-bold text-orange-600 mb-2">{{ \App\Models\PaymentTransaction::where('user_id', auth()->id())->where('status', 'pending')->count() }}</div>
+                <div class="text-3xl font-bold text-orange-600 mb-2">{{ \App\Models\PaymentTransaction::where('user_id', auth()->id())->where('payment_status', 'pending')->count() }}</div>
                 <p class="text-gray-600 text-center">Pending Payments</p>
             </div>
         </div>
@@ -66,7 +66,7 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <a href="{{ route('filament.customer.resources.bookings.view', $booking->id) }}" class="text-teal-600 hover:text-teal-900">View Details</a>
+                                    <a href="{{ route('filament.customer.resources.bookings.view', $booking->booking_id) }}" class="text-teal-600 hover:text-teal-900">View Details</a>
                                 </td>
                             </tr>
                         @empty
@@ -108,16 +108,18 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $payment->payment_date->format('d M Y') }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                        @if($payment->status == 'completed') bg-green-100 text-green-800 
-                                        @elseif($payment->status == 'pending') bg-yellow-100 text-yellow-800 
-                                        @elseif($payment->status == 'failed') bg-red-100 text-red-800 
+                                        @if($payment->payment_status == 'completed') bg-green-100 text-green-800 
+                                        @elseif($payment->payment_status == 'pending') bg-yellow-100 text-yellow-800 
+                                        @elseif($payment->payment_status == 'failed') bg-red-100 text-red-800 
                                         @else bg-blue-100 text-blue-800 @endif">
-                                        {{ ucfirst($payment->status) }}
+                                        {{ ucfirst($payment->payment_status) }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <a href="{{ route('filament.customer.resources.payments.view', $payment->id) }}" class="text-teal-600 hover:text-teal-900">View Details</a>
+                                    <a href="{{ route('filament.customer.resources.payments.view', $payment->payment_id) }}" class="text-teal-600 hover:text-teal-900">View Details</a>
                                 </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $booking->start_date ? $booking->start_date->format('d M Y') : 'N/A' }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $booking->end_date ? $booking->end_date->format('d M Y') : 'N/A' }}</td>
                             </tr>
                         @empty
                             <tr>

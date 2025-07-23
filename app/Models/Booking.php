@@ -67,4 +67,24 @@ class Booking extends Model
     {
         return $this->hasOne(CheckoutTransaction::class, 'booking_id', 'booking_id');
     }
+
+    public function getFormattedStartDateAttribute()
+    {
+        return $this->start_date ? $this->start_date->format('d M Y') : 'N/A';
+    }
+
+    public function getFormattedEndDateAttribute()
+    {
+        return $this->end_date ? $this->end_date->format('d M Y') : 'N/A';
+    }
+
+    public function getCheckInDateAttribute()
+    {
+        return $this->start_date;
+    }
+
+    public function getCheckOutDateAttribute()
+    {
+        return $this->end_date;
+    }
 }

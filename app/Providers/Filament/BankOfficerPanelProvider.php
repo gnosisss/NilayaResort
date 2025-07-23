@@ -31,8 +31,8 @@ class BankOfficerPanelProvider extends PanelProvider
                 'primary' => Color::Blue,
             ])
             ->brandName('Nilaya Resort - Bank Verification')
-            ->brandLogo(asset('images/logo-bank.png'))
-            ->favicon(asset('images/favicon-bank.png'))
+            ->brandLogo(asset('images/logo-bank-officer.png'))
+            ->favicon(asset('images/favicon-bank-officer.png'))
             ->discoverResources(in: app_path('Filament/BankResources'), for: 'App\\Filament\\BankResources')
             ->discoverPages(in: app_path('Filament/BankPages'), for: 'App\\Filament\\BankPages')
             ->pages([
@@ -55,7 +55,7 @@ class BankOfficerPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-                BankOfficer::class,
+                \App\Http\Middleware\BankOfficer::class,
             ]);
     }
 }

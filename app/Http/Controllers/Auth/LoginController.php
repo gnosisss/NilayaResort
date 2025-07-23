@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -16,7 +17,29 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/dashboard';
+    
+    /**
+     * Get the post login redirect path based on user role.
+     *
+     * @return string
+     */
+    protected function redirectTo()
+{
+    if (Auth::check()) {
+        if (Auth::user()->role === 'admin') {
+            return '/admin';
+        } elseif (Auth::user()->role === 'employee') {
+            return '/employee';
+        } elseif (Auth::user()->role === 'bank_officer') {
+            return '/bank-verification';
+        } elseif (Auth::user()->role === 'customer') {
+            return '/customer';
+        }
+    }
+    
+    return RouteServiceProvider::HOME; // Gunakan konstanta dari RouteServiceProvider
+}
 
     /**
      * Create a new controller instance.

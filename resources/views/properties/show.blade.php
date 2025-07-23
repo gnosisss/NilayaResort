@@ -94,7 +94,7 @@
 
                 <!-- CTA Button -->
                 <div class="mt-8">
-                    <a href="{{ route('properties.purchase.create', $property->unit_id) }}" class="group relative inline-flex w-full items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-xl text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-300 overflow-hidden">
+                    <a href="{{ route('properties.purchase.create', $property->unit_id) }}" class="group relative inline-flex w-full items-center justify-center px-8 py-4 border border-black text-base font-medium rounded-xl text-black bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-300 overflow-hidden">
                         <span class="absolute right-0 translate-x-full group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>

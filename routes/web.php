@@ -14,7 +14,20 @@ Route::get('/', function () {
 });
 
 // Dashboard Route
-Route::get('/dashboard', [BookingController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', function() {
+    if (Auth::check()) {
+        if (Auth::user()->role === 'admin') {
+            return redirect('/admin');
+        } elseif (Auth::user()->role === 'employee') {
+            return redirect('/employee');
+        } elseif (Auth::user()->role === 'bank_officer') {
+            return redirect('/bank-verification');
+        } elseif (Auth::user()->role === 'customer') {
+            return redirect('/customer');
+        }
+    }
+    return app(BookingController::class)->index(request());
+})->name('dashboard');
 
 // Authentication Routes
 Auth::routes();
@@ -74,6 +87,12 @@ Route::middleware(['auth', 'bank.officer'])->prefix('bank')->name('bank.')->grou
     Route::post('/purchases/{purchase}/verify-documents', [BankVerificationController::class, 'verifyDocuments'])->name('verify-documents');
     Route::post('/purchases/{purchase}/approve-credit', [BankVerificationController::class, 'approveCredit'])->name('approve-credit');
     Route::post('/purchases/{purchase}/reject', [BankVerificationController::class, 'reject'])->name('reject');
+});
+
+// Document Review Routes
+Route::middleware(['auth'])->prefix('document-reviews')->name('document.reviews.')->group(function () {
+    Route::get('/verification/{id}', [\App\Http\Controllers\Bank\DocumentReviewController::class, 'show'])->name('show');
+    Route::get('/purchase/{purchaseId}', [\App\Http\Controllers\Bank\DocumentReviewController::class, 'showByPurchase'])->name('show-by-purchase');
 });
 
 

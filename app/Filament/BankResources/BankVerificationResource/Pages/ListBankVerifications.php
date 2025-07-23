@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\BankVerificationResource\Pages;
+namespace App\Filament\BankResources\BankVerificationResource\Pages;
 
-use App\Filament\Resources\BankVerificationResource;
-use Filament\Actions;
+use App\Filament\BankResources\BankVerificationResource;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListBankVerifications extends ListRecords
@@ -13,7 +13,7 @@ class ListBankVerifications extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

@@ -127,6 +127,9 @@
                             <a href="{{ route('bookings.my-bookings') }}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 transition-colors duration-200 {{ request()->routeIs('bookings.my-bookings') ? 'active' : '' }}">
                                 {{ __('My Bookings') }}
                             </a>
+                            <a href="{{ route('properties.my-purchases') }}" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-100 transition-colors duration-200 {{ request()->routeIs('properties.my-purchases') ? 'active' : '' }}">
+                                {{ __('My Properties') }}
+                            </a>
                             
                             <!-- User Dropdown -->
                             <div class="relative" x-data="{ open: false }" @click.away="open = false">
@@ -181,6 +184,9 @@
                         @auth
                         <a href="{{ route('bookings.my-bookings') }}" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 transition-colors duration-200 {{ request()->routeIs('bookings.my-bookings') ? 'text-primary-600' : 'text-gray-700' }}">
                             {{ __('My Bookings') }}
+                        </a>
+                        <a href="{{ route('properties.my-purchases') }}" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 transition-colors duration-200 {{ request()->routeIs('properties.my-purchases') ? 'text-primary-600' : 'text-gray-700' }}">
+                            {{ __('My Properties') }}
                         </a>
                         <div class="border-t border-gray-200 my-2"></div>
                         <div class="px-3 py-2 text-base font-medium text-gray-700">

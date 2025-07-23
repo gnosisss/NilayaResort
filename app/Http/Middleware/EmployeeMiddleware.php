@@ -27,7 +27,7 @@ class EmployeeMiddleware
                 ->with('error', 'Anda harus login terlebih dahulu untuk mengakses halaman ini.');
         }
         
-        if (!Auth::user()->role === 'employee') {
+        if (Auth::user()->role !== 'employee') {
             Log::warning('Unauthorized access attempt to employee area - Not an employee', [
                 'user_id' => Auth::id(),
                 'user_email' => Auth::user()->email,
